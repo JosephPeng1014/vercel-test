@@ -1,6 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default function handler(req, res) {
+  const start = new Date()
   const { delay = '0' } = req.query
 
   const numDelay = parseInt(delay)
@@ -8,6 +9,12 @@ export default function handler(req, res) {
   console.log(numDelay)
 
   setTimeout(() => {
-    return res.json({ result: 'hello' })
+    const end = new Date()
+    return res.json({ 
+      result: 'hello',
+      delay,
+      start,
+      end
+    })
   }, numDelay * 1000)
 }
